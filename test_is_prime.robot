@@ -4,7 +4,7 @@ Library           RequestsLibrary
 *** Keywords ***
 Get API_APP JSON
     [Arguments]    ${num}
-    ${resp}=     GET    http://127.0.0.1:5000/is_prime/${num}
+    ${resp}=     GET    http://127.0.0.1:8080/is_prime/${num}
     Should Be Equal    ${resp.status_code}    ${200}
     RETURN    ${resp.json()}
 
@@ -17,21 +17,21 @@ Convert String To Boolean
 
 *** Test Cases ***
 Test API_APP Numbers 17 (Before Using Keywords)
-    ${resp}=     GET    http://127.0.0.1:5000/is_prime/17
+    ${resp}=     GET    http://127.0.0.1:8080/is_prime/17
     Should Be Equal    ${resp.status_code}    ${200}
     ${json_resp}=    Set Variable  ${resp.json()}
     ${is_prime}=    Convert String To Boolean    ${json_resp['Is_prime']}
     Should Be Equal    ${is_prime}    True
 
 Test API_APP Numbers 36 (Before Using Keywords)
-    ${resp}=     GET    http://127.0.0.1:5000/is_prime/36
+    ${resp}=     GET    http://127.0.0.1:8080/is_prime/36
     Should Be Equal    ${resp.status_code}    ${200}
     ${json_resp}=    Set Variable  ${resp.json()}
     ${is_prime}=    Convert String To Boolean    ${json_resp['Is_prime']}
     Should Be Equal    ${is_prime}    False
 
 Test API_APP Numbers 13219 (Before Using Keywords)
-    ${resp}=     GET    http://127.0.0.1:5000/is_prime/13219
+    ${resp}=     GET    http://127.0.0.1:8080/is_prime/13219
     Should Be Equal    ${resp.status_code}    ${200}
     ${json_resp}=    Set Variable  ${resp.json()}
     ${is_prime}=    Convert String To Boolean    ${json_resp['Is_prime']}
